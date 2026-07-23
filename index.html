@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GST 312: Peace and Conflict Resolution — CBT Exam</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Animated Gradient Background */
+        body {
+            background: linear-gradient(-45deg, #6a7783, #8d0650, #cc61c7, #203a43, #3d0636);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+            width: 100%;
+            max-width: 750px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Header Layout */
+        .header {
+            background-color: #0f4c81;
+            color: #ffffff;
+            padding: 18px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-text {
+            text-align: center;
+        }
+
+        .header-text h1 {
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        .header-text p {
+            font-size: 0.88rem;
+            opacity: 0.9;
+        }
+
+        .progress-section {
+            padding: 15px 20px;
+            background-color: #eef2f5;
+            border-bottom: 1px solid #ddd;
+            position: relative;
+            z-index: 2;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .progress-bar-background {
+            background-color: #d1d9e0;
+            border-radius: 10px;
+            height: 10px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            background-color: #9c050c;
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .question-box {
+            padding: 30px 20px;
+            flex-grow: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+        .question-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            line-height: 1.45;
+        }
+
+        .options-list {
+            list-style: none;
+        }
+
+        .option-item {
+            margin-bottom: 12px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.98rem;
+            background-color: rgba(255, 255, 255, 0.85);
+        }
+
+        .option-label:hover {
+            background-color: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .option-label input[type="radio"] {
+            margin-right: 12px;
+            accent-color: #0f4c81;
+            transform: scale(1.2);
+        }
+
+        .option-label.selected {
+            border-color: #0f4c81;
+            background-color: #f0f7ff;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background-color: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-secondary {
+            background-color: #64748b;
+            color: white;
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background-color: #475569;
+        }
+
+        .btn-primary {
+            background-color: #0f4c81;
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background-color: #0a355c;
+        }
+
+        .btn-submit {
+            background-color: #f73707;
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background-color: #b63806;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .result-screen {
+            padding: 40px 20px;
+            text-align: center;
+            display: none;
+            position: relative;
+            z-index: 2;
+        }
+
+        .result-screen h2 {
+            font-size: 1.8rem;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .score-box {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0f4c81;
+            margin: 20px 0;
+        }
+
+        .percentage-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background-color: #e0e7ff;
+            color: #3730a3;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0;
+            }
+            .quiz-container {
+                border-radius: 0;
+                min-height: 100vh;
+            }
+            .header {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+            }
+            .header-text {
+                text-align: center;
+            }
+            .footer-nav {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .btn {
+                flex: 1;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <!-- Header Title -->
+    <div class="header">
+        <div class="header-text">
+            <h1>FEDERAL UNIVERSITY OF TECHNOLOGY, MINNA</h1>
+            <p>GST 312: Peace and Conflict Resolution — E-Examination</p>
+        </div>
+    </div>
+
+    <!-- Progress Tracker -->
+    <div class="progress-section" id="progressSection">
+        <div class="progress-text">
+            <span id="questionProgressText">Question 1 of 100</span>
+            <span id="answeredCountText">Answered: 0/100</span>
+        </div>
+        <div class="progress-bar-background">
+            <div class="progress-bar-fill" id="progressBarFill"></div>
+        </div>
+    </div>
+
+    <!-- Question Container -->
+    <div class="question-box" id="questionBox">
+        <div class="question-title" id="questionText">Loading question...</div>
+        <ul class="options-list" id="optionsList"></ul>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="footer-nav" id="footerNav">
+        <button class="btn btn-secondary" id="prevBtn" onclick="navigate(-1)" disabled>Previous</button>
+        <button class="btn btn-primary" id="nextBtn" onclick="navigate(1)">Next</button>
+        <button class="btn btn-submit" id="submitBtn" onclick="confirmSubmit()">Submit Exam</button>
+    </div>
+
+    <!-- Result Screen -->
+    <div class="result-screen" id="resultScreen">
+        <h2>Examination Completed</h2>
+        <p>Your responses have been recorded successfully.</p>
+        <div class="score-box" id="scoreDisplay">0 / 100</div>
+        <div class="percentage-badge" id="percentageDisplay">Score: 0%</div>
+        <div>
+            <button class="btn btn-primary" onclick="restartQuiz()">Restart Examination</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Raw Question Bank
+    const rawQuestions = [
+        { q: "Who introduced the concept that peace exists when both direct violence and structural violence are absent?", options: ["Coser", "Johan Galtung", "Hans Morgenthau", "Dollard"], answer: 1 },
+        { q: "Negative peace refers to:", options: ["The presence of justice and equality", "The absence of direct violence or armed conflict", "Sustainable harmony among communities", "Economic security for all citizens"], answer: 1 },
+        { q: "Which of the following is a characteristic of positive peace?", options: ["Temporary ceasefire", "Suppression of violence", "Social justice", "Underlying grievances remain unresolved"], answer: 2 },
+        { q: "According to Coser (1956), conflict is fundamentally a struggle over:", options: ["Climate conditions", "Values, status, power, or scarce resources", "Language differences only", "Religious doctrine only"], answer: 1 },
+        { q: "Which of the following is NOT listed as a characteristic of conflict?", options: ["Conflict is natural", "Conflict is dynamic", "Conflict is static and unchanging", "Conflict may be constructive or destructive"], answer: 2 },
+        { q: "The United Nations Development Programme (UNDP) introduced the concept of human security in:", options: ["1948", "1969", "1994", "2004"], answer: 2 },
+        { q: "How many dimensions of human security are identified in the notes?", options: ["5", "6", "7", "8"], answer: 2 },
+        { q: "Nigeria is described in the notes as having over how many ethnic groups?", options: ["100", "150", "250", "350"], answer: 2 },
+        { q: "Which of the following is listed as a dimension of security in the notes?", options: ["Cyber security", "Culinary security", "Fashion security", "Sports security"], answer: 0 },
+        { q: "Which theory attributes conflict to unmet expectations leading to frustration, anger and aggression?", options: ["Structural Conflict Theory", "Realist Theory", "Frustration–Aggression Theory", "None of the above"], answer: 2 },
+        { q: "Structural Conflict Theory is most closely associated with:", options: ["Johan Galtung", "Hans Morgenthau", "Dollard and Miller", "Coser"], answer: 0 },
+        { q: "Realist Theory of Conflict is most closely associated with:", options: ["Johan Galtung", "Hans Morgenthau", "Dollard and Miller", "Coser"], answer: 1 },
+        { q: "Which type of conflict primarily concerns boundaries, territory, or geographical space?", options: ["Ethnic conflict", "Religious conflict", "Economic conflict", "Geo-political conflict"], answer: 3 },
+        { q: "The Maitatsine uprisings are given in the notes as an example of:", options: ["Ethnic conflict", "Religious conflict", "Economic conflict", "Political conflict"], answer: 1 },
+        { q: "A key limitation of Realist Theory, according to the notes, is that it:", options: ["Ignores the concept of power entirely", "Overemphasises power and neglects cooperation and moral considerations", "Focuses too heavily on individual psychology", "Explains only ethnic conflicts"], answer: 1 },
+        { q: "The integrated example of the Boko Haram insurgency in the notes links poverty/exclusion, competition for influence, and youth frustration to which combination of theories?", options: ["Only Structural Theory", "Only Realist Theory", "Structural, Realist, and Frustration–Aggression Theories combined", "None of the theories"], answer: 2 },
+        { q: "Constructive conflict is exemplified in the notes by:", options: ["Ethno-religious riots", "Peaceful advocacy for electoral reforms", "Civil wars", "Acts of terrorism"], answer: 1 },
+        { q: "Political conflict primarily involves struggles for:", options: ["Control of territory only", "Religious dominance", "Political authority, leadership positions, or control of government institutions", "Cultural identity only"], answer: 2 },
+        { q: "The indigene–settler phenomenon primarily concerns disputes over:", options: ["Religious doctrine", "The distinction between original inhabitants and those regarded as settlers", "International boundary treaties", "Gender inequality"], answer: 1 },
+        { q: "The Bakassi Peninsula boundary dispute, resolved through international adjudication, was between Nigeria and:", options: ["Chad", "Niger", "Cameroon", "Benin"], answer: 2 },
+        { q: "Which of the following is listed as a possible solution to the indigene–settler problem?", options: ["Citizenship-based rights rather than indigene status", "Increasing discrimination based on origin", "Ignoring the issue entirely", "Banning internal migration"], answer: 0 },
+        { q: "Root causes of conflict differ from triggers in that root causes are:", options: ["Immediate events that spark violence", "Long-term, deeply embedded structural conditions", "Always exclusively religious in nature", "Irrelevant to policy design"], answer: 1 },
+        { q: "Which of the following is cited as a Nigerian example of ethnic rivalry?", options: ["The Tiv–Jukun conflict", "Boko Haram insurgency only", "Niger Delta militancy only", "None of the above"], answer: 0 },
+        { q: "According to the notes, youth unemployment mainly contributes to:", options: ["Improved governance", "Social unrest and recruitment into armed or criminal groups", "Reduced levels of conflict", "Greater economic equality"], answer: 1 },
+        { q: "Which of the following is NOT listed as a strategy for addressing the root causes of conflict?", options: ["Good governance and accountable leadership", "Civic and peace education", "Suppressing all forms of dialogue", "Poverty reduction and economic empowerment"], answer: 2 },
+        { q: "Political disputes, as discussed in the notes, are commonly caused by:", options: ["Electoral malpractice and corruption", "Excess rainfall", "An overly independent judiciary", "Low population growth"], answer: 0 },
+        { q: "Resource-based conflict arises from competition over:", options: ["Fashion trends", "The ownership, control, access, or distribution of natural resources", "Sporting events", "Literary works"], answer: 1 },
+        { q: "The 'resource curse' refers to the paradox in which resource-rich countries:", options: ["Always develop faster than resource-poor countries", "Experience slower development, poor governance, and conflict despite their wealth", "Have no natural resources at all", "Achieve perfectly equal wealth distribution"], answer: 1 },
+        { q: "In northern Nigeria, desertification has encouraged:", options: ["Rapid urbanisation only", "The southward migration of pastoralists", "A general reduction in farming activity", "An increase in fishing activity"], answer: 1 },
+        { q: "Which of the following is NOT listed as a cause of resource scarcity?", options: ["Population growth", "Climate change", "Good and sustainable resource management", "Environmental degradation"], answer: 2 },
+        { q: "Niger Delta conflicts are mainly linked to:", options: ["Oil exploration, environmental pollution, and inequitable revenue distribution", "Religious extremism alone", "Boundary disputes with Cameroon", "Prolonged drought"], answer: 0 },
+        { q: "Identity politics is defined in the notes as:", options: ["Political mobilisation based on shared characteristics such as ethnicity or religion", "International diplomatic negotiation", "National economic planning", "Military strategy formulation"], answer: 0 },
+        { q: "Which strategy is recommended in the notes for managing resource-based conflicts?", options: ["Alternative Dispute Resolution (ADR)", "Ignoring affected communities", "Unrestricted, unregulated mining", "Suppressing public information"], answer: 0 },
+        { q: "Climate change contributes to resource-based conflict mainly through:", options: ["Uniformly increased rainfall everywhere", "Desertification, drought, and reduced agricultural productivity", "Improved water availability for all", "General population decline"], answer: 1 },
+        { q: "The Tiv–Jukun conflict primarily occurs in:", options: ["Lagos and Ogun States", "Taraba and Benue States", "Kano and Sokoto States", "Rivers and Bayelsa States"], answer: 1 },
+        { q: "The immediate trigger of the Zangon Kataf crisis, according to the notes, was:", options: ["A religious insult", "The relocation of a local market", "A chieftaincy succession dispute", "A disputed election result"], answer: 1 },
+        { q: "The Zangon Kataf crisis occurred mainly in:", options: ["Kaduna State", "Plateau State", "Taraba State", "Kano State"], answer: 0 },
+        { q: "Chieftaincy disputes in Nigeria commonly arise from:", options: ["Succession disputes among competing royal families", "International treaty violations", "Climate change", "Trade agreement disputes"], answer: 0 },
+        { q: "Which theory, per the case studies chapter, best explains community anger and revenge attacks following perceived injustice?", options: ["Structural Conflict Theory", "Realist Theory", "Frustration–Aggression Theory", "None of the above"], answer: 2 },
+        { q: "A major violent episode of the Tiv–Jukun conflict occurred during:", options: ["1945", "1980–1982", "2010 exclusively", "1900"], answer: 1 },
+        { q: "Land disputes in Nigeria are commonly resolved through:", options: ["Alternative Dispute Resolution and courts of law", "Military coups", "International arbitration exclusively", "Ignoring the disputing parties"], answer: 0 },
+        { q: "Which of the following is listed as a lesson drawn from Nigeria's conflict case studies?", options: ["Violence resolves disputes faster than dialogue", "Dialogue is preferable to violence", "Traditional institutions are irrelevant to peace", "Justice is unnecessary for reconciliation"], answer: 1 },
+        { q: "Peacebuilding, unlike peacekeeping, primarily seeks to:", options: ["Maintain ceasefires only", "Address the root causes of conflict", "Deploy military forces exclusively", "Ignore institutional development"], answer: 1 },
+        { q: "Which of the following is listed as a principle of peacebuilding?", options: ["Exclusiveness", "Local ownership", "Suppression of dialogue", "Short-term focus only"], answer: 1 },
+        { q: "Human development, as popularised by the UNDP, focuses on:", options: ["Increasing national income alone", "Expanding people's opportunities, capabilities, and freedoms", "Military expansion", "Trade balance management"], answer: 1 },
+        { q: "Which stage of conflict management involves rebuilding trust through forgiveness, justice, and truth-telling?", options: ["Conflict Prevention", "Conflict Mitigation", "Reconciliation", "Conflict Resolution"], answer: 2 },
+        { q: "In arbitration, the final decision is made by:", options: ["Both parties jointly", "An independent arbitrator", "A mediator without formal authority", "The general public"], answer: 1 },
+        { q: "Which Sustainable Development Goal (SDG) is most directly linked to peace, justice and strong institutions?", options: ["SDG 4", "SDG 8", "SDG 16", "SDG 11"], answer: 2 },
+        { q: "Which of the following is listed as a major challenge to peacebuilding in Nigeria and Africa?", options: ["Proliferation of small arms", "Excess government funding", "Overly strong institutions", "Full youth employment"], answer: 0 },
+        { q: "Conflict mitigation, as a stage of conflict management, mainly involves:", options: ["Permanently eliminating all conflict", "Reducing the intensity of existing tensions", "Declaring formal war", "Ignoring negotiation processes"], answer: 1 },
+        { q: "Which approach to conflict management relies on state institutions, policies, laws and security agencies?", options: ["Religious approach", "Government approach", "Media approach", "Educational approach"], answer: 1 },
+        { q: "A key limitation of the traditional approach to conflict management, per the notes, is that it:", options: ["Is too expensive for communities", "May discriminate against women and vulnerable groups", "Lacks community trust", "Is used only at the international level"], answer: 1 },
+        { q: "The multi-track approach to peacebuilding emphasises:", options: ["Reliance on a single institution", "Cooperation among governments, traditional institutions, religious bodies, civil society and others", "Exclusive government control", "Military solutions only"], answer: 1 },
+        { q: "Peace journalism principles include:", options: ["Sensationalising conflict for higher ratings", "Verifying information and avoiding inflammatory language", "Actively promoting hate speech", "Deliberately ignoring balance in reporting"], answer: 1 },
+        { q: "Which of the following is an advantage of the community-based approach to conflict management?", options: ["High operational cost", "Local ownership and cultural acceptance", "Weak legal authority", "Excessive institutional complexity"], answer: 1 },
+        { q: "Which institution mediates disputes primarily using indigenous customs and cultural norms?", options: ["Civil society organisations", "Traditional institutions", "The judiciary", "The mass media"], answer: 1 },
+        { q: "A key limitation of the government approach to conflict management, per the notes, is:", options: ["Its legal authority", "Political interference and corruption", "Its national coordination capacity", "Its enforcement ability"], answer: 1 },
+        { q: "The Niger Delta conflict was managed partly through:", options: ["A government amnesty programme and economic empowerment", "Full and permanent military occupation only", "An international trade boycott", "Complete government neglect"], answer: 0 },
+        { q: "Conflict assessment is best described as:", options: ["A random guess about the causes of a conflict", "A systematic process of collecting and analysing information about a conflict", "A formal court process", "A binding arbitration procedure"], answer: 1 },
+        { q: "Which stage of conflict dynamics involves underlying tensions that exist but have not yet become visible?", options: ["Manifest Conflict", "Latent Conflict", "Conflict Escalation", "Conflict De-escalation"], answer: 1 },
+        { q: "Restorative justice, as defined in the notes, focuses on:", options: ["Punishment alone", "Repairing relationships through dialogue, reconciliation, apology and forgiveness", "Ignoring the needs of victims", "Strict retribution exclusively"], answer: 1 },
+        { q: "Which of the following is listed as a form of justice in the notes?", options: ["Distributive Justice", "Retributive Justice", "Procedural Justice", "All of the above"], answer: 3 },
+        { q: "The Nigerian judiciary hierarchy described in the notes includes all of the following EXCEPT:", options: ["Supreme Court", "Court of Appeal", "Customary Courts", "International Criminal Court"], answer: 3 },
+        { q: "Which body promotes human rights, investigates complaints, and conducts public education in Nigeria?", options: ["NEMA", "National Human Rights Commission (NHRC)", "NSCDC", "DSS"], answer: 1 },
+        { q: "Structural causes of conflict, per the conflict assessment framework, include:", options: ["Assassinations", "Poverty, inequality and poor governance", "Isolated market disputes", "Election results alone"], answer: 1 },
+        { q: "Social justice is primarily concerned with:", options: ["Fairness in the distribution of rights, opportunities and resources", "Military strength and capability", "International trade agreements", "Population control measures"], answer: 0 },
+        { q: "Insurgency is best defined in the notes as:", options: ["A peaceful street protest", "An organised armed rebellion against an established government or authority", "A religious ceremony", "An economic development policy"], answer: 1 },
+        { q: "Terrorism, as defined in the notes, primarily targets:", options: ["Military installations exclusively", "Civilians or non-combatants, to intimidate or coerce", "International organisations exclusively", "Natural resources directly"], answer: 1 },
+        { q: "Boko Haram launched its armed insurgency in:", options: ["1999", "2009", "2015", "1980"], answer: 1 },
+        { q: "ISWAP (Islamic State West Africa Province) emerged following:", options: ["A merger of two political parties", "A split within Boko Haram", "An international peace treaty", "A United Nations Security Council resolution"], answer: 1 },
+        { q: "Which of the following is a fundamental principle of traditional peacekeeping?", options: ["Aggressive offensive action against all parties", "Consent of the parties to the conflict", "Total secrecy from the host government", "Unilateral decision-making by peacekeepers"], answer: 1 },
+        { q: "Peace mediation differs from peacekeeping in that mediation is:", options: ["Primarily a security-based operation", "A voluntary, dialogue-based process", "Always legally compulsory", "Conducted only by military personnel"], answer: 1 },
+        { q: "Robust peacekeeping, as described in the notes, is authorised to:", options: ["Avoid the use of force under all circumstances", "Use greater force to protect civilians and enforce the mandate when necessary", "Withdraw immediately at the first sign of conflict", "Ignore civilian protection entirely"], answer: 1 },
+        { q: "Which of the following countries is NOT mentioned in the notes as having hosted an African peacekeeping mission?", options: ["Liberia", "Mali", "Iceland", "Democratic Republic of the Congo"], answer: 2 },
+        { q: "A key advantage of mediation over litigation, per the notes, is that mediation is:", options: ["More expensive and slower", "Faster and less expensive", "Always legally binding automatically", "Mandatory for every type of dispute"], answer: 1 },
+        { q: "The United Nations Security Council has how many permanent members?", options: ["3", "5", "10", "15"], answer: 1 },
+        { q: "Which of the following is NOT a permanent member of the UN Security Council?", options: ["China", "Russia", "Germany", "United States"], answer: 2 },
+        { q: "The African Union Peace and Security Council was established under a protocol in:", options: ["1994", "2001", "2004", "2010"], answer: 2 },
+        { q: "ECOWAS has intervened in peacekeeping or peace-support operations in all of the following EXCEPT:", options: ["Liberia", "Sierra Leone", "The Gambia", "Brazil"], answer: 3 },
+        { q: "A protocol, in international legal terms as used in the notes, is:", options: ["A binding treaty exclusively between individuals", "An additional legal instrument that supplements or expands an existing treaty or convention", "A type of domestic court ruling", "A specific military strategy"], answer: 1 },
+        { q: "Community policing, as described in the notes, emphasises:", options: ["Sole reliance on formal law enforcement", "Partnership between the police and members of the community", "Direct military rule over communities", "Suppression of civilian input in security matters"], answer: 1 },
+        { q: "Which Nigerian agency is responsible for intelligence gathering and internal security?", options: ["NEMA", "Department of State Services (DSS)", "NSCDC", "NHRC"], answer: 1 },
+        { q: "Which Nigerian agency coordinates disaster management and humanitarian response?", options: ["National Emergency Management Agency (NEMA)", "DSS", "Nigeria Police Force", "Armed Forces"], answer: 0 },
+        { q: "A major challenge facing the African Union Peace and Security Council, per the notes, is:", options: ["Excessive and unlimited funding", "Dependence on external partners and funding limitations", "Too much independent military logistics", "A complete absence of political divisions"], answer: 1 },
+        { q: "Alternative Dispute Resolution (ADR) mainly seeks to resolve disputes:", options: ["Exclusively through formal litigation", "Outside the formal court system through voluntary, cooperative procedures", "Through direct military intervention", "By deliberately ignoring the parties involved"], answer: 1 },
+        { q: "In arbitration, the final decision reached by the arbitrator is called a/an:", options: ["Verdict", "Award", "Settlement note", "Treaty"], answer: 1 },
+        { q: "Which ADR method allows the third party to propose possible solutions without imposing a binding decision?", options: ["Arbitration", "Litigation", "Conciliation", "Negotiation"], answer: 2 },
+        { q: "Collaboration, unlike negotiation, primarily seeks:", options: ["Compromise only, without further cooperation", "A win-win outcome through shared decision-making", "Rulings imposed solely by a third party", "A complete absence of communication"], answer: 1 },
+        { q: "Which principle of ADR ensures that information disclosed during proceedings remains private?", options: ["Neutrality", "Confidentiality", "Flexibility", "Good faith"], answer: 1 },
+        { q: "Negotiation is best described in the notes as a process where:", options: ["A judge formally decides the outcome", "Disputing parties communicate directly to reach agreement without third-party intervention", "An arbitrator imposes a binding decision", "The parties never communicate with each other"], answer: 1 },
+        { q: "Which of the following is a limitation of arbitration, according to the notes?", options: ["It always perfectly preserves relationships", "Limited appeal and potentially high costs", "It is always completely free", "It has no designated decision-maker"], answer: 1 },
+        { q: "Dialogue, as described in the notes, focuses more on:", options: ["Winning arguments outright", "Understanding rather than winning", "Strict legal enforcement", "Securing financial compensation"], answer: 1 },
+        { q: "Peace journalism, as described in the notes, encourages journalists to:", options: ["Sensationalise conflict to increase ratings", "Verify facts, avoid inflammatory language, and highlight peace initiatives", "Deliberately take sides in a conflict", "Ignore the perspectives of all parties involved"], answer: 1 },
+        { q: "A refugee, as defined in the notes, is a person who:", options: ["Remains within their own country's borders after being displaced", "Flees their country owing to persecution, conflict or violence and seeks protection in another country", "Migrates solely for economic opportunities", "Has never experienced displacement"], answer: 1 },
+        { q: "An Internally Displaced Person (IDP) is someone who:", options: ["Has crossed an international border seeking asylum", "Is forced to flee their home but remains within their own country's borders", "Has never been displaced from their home", "Lives permanently in a foreign country"], answer: 1 },
+        { q: "Post-conflict management activities include all of the following EXCEPT:", options: ["Disarmament", "Demobilisation", "Reintegration", "Deliberately escalating hostilities"], answer: 3 },
+        { q: "NGOs contribute to post-conflict recovery mainly through:", options: ["Direct military deployment", "Humanitarian relief, peace education, and trauma counselling", "Enacting national legislation", "Formally declaring war"], answer: 1 },
+        { q: "Traditional institutions contribute to peacebuilding mainly through:", options: ["Mediation, conflict prevention, and reconciliation ceremonies", "Issuing international economic sanctions", "Commanding national armed forces", "Setting national tax policy"], answer: 0 },
+        { q: "A major challenge of post-conflict reconstruction, per the notes, includes:", options: ["Abundant and guaranteed funding", "Complete political stability", "Funding shortages and weak institutions", "A total absence of psychological trauma"], answer: 2 },
+        { q: "Which of the following best summarises the role of the media in peacebuilding, according to the notes?", options: ["The media can only escalate conflict, never promote peace", "The media can either escalate conflict through irresponsible reporting or promote peace through responsible journalism", "The media has no role in conflict management", "The media's only role is entertainment"], answer: 1 }
+    ];
+
+    let preparedQuestions = [];
+    let userAnswers = {};
+    let currentIndex = 0;
+
+    // Helper: Fisher-Yates Shuffle
+    function shuffleArray(array) {
+        let arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+    // Initialize Quiz with randomized questions and randomized options
+    function initQuiz() {
+        let shuffledQ = shuffleArray(rawQuestions);
+
+        preparedQuestions = shuffledQ.map(item => {
+            const correctAnswerText = item.options[item.answer];
+            const shuffledOptions = shuffleArray(item.options);
+            const newCorrectIndex = shuffledOptions.indexOf(correctAnswerText);
+
+            return {
+                q: item.q,
+                options: shuffledOptions,
+                answer: newCorrectIndex
+            };
+        });
+
+        userAnswers = {};
+        currentIndex = 0;
+
+        document.getElementById('resultScreen').style.display = 'none';
+        document.getElementById('questionBox').style.display = 'block';
+        document.getElementById('progressSection').style.display = 'block';
+        document.getElementById('footerNav').style.display = 'flex';
+
+        renderQuestion();
+    }
+
+    function renderQuestion() {
+        const currentQ = preparedQuestions[currentIndex];
+        
+        document.getElementById('questionText').innerHTML = `${currentIndex + 1}. ${currentQ.q}`;
+
+        const optionsList = document.getElementById('optionsList');
+        optionsList.innerHTML = '';
+
+        const optionPrefixes = ['a', 'b', 'c', 'd'];
+
+        currentQ.options.forEach((optText, optIdx) => {
+            const li = document.createElement('li');
+            li.className = 'option-item';
+
+            const isChecked = userAnswers[currentIndex] === optIdx;
+
+            li.innerHTML = `
+                <label class="option-label ${isChecked ? 'selected' : ''}" id="label-opt-${optIdx}">
+                    <input type="radio" name="option" value="${optIdx}" ${isChecked ? 'checked' : ''} onchange="selectOption(${optIdx})">
+                    <span><strong>${optionPrefixes[optIdx]})</strong> ${optText}</span>
+                </label>
+            `;
+            optionsList.appendChild(li);
+        });
+
+        updateProgress();
+    }
+
+    function selectOption(index) {
+        userAnswers[currentIndex] = index;
+        
+        // Update styling visually without full re-render loop
+        const labels = document.querySelectorAll('.option-label');
+        labels.forEach((label, idx) => {
+            if (idx === index) {
+                label.classList.add('selected');
+            } else {
+                label.classList.remove('selected');
+            }
+        });
+
+        updateProgress();
+    }
+
+    function navigate(direction) {
+        currentIndex += direction;
+        if (currentIndex < 0) currentIndex = 0;
+        if (currentIndex >= preparedQuestions.length) currentIndex = preparedQuestions.length - 1;
+        renderQuestion();
+    }
+
+    function updateProgress() {
+        const total = preparedQuestions.length;
+        const answeredCount = Object.keys(userAnswers).length;
+
+        document.getElementById('questionProgressText').innerText = `Question ${currentIndex + 1} of ${total}`;
+        document.getElementById('answeredCountText').innerText = `Answered: ${answeredCount}/${total}`;
+
+        const fillPercentage = ((currentIndex + 1) / total) * 100;
+        document.getElementById('progressBarFill').style.width = `${fillPercentage}%`;
+
+        document.getElementById('prevBtn').disabled = currentIndex === 0;
+        document.getElementById('nextBtn').disabled = currentIndex === total - 1;
+    }
+
+    function confirmSubmit() {
+        const answeredCount = Object.keys(userAnswers).length;
+        const total = preparedQuestions.length;
+
+        let message = `Are you sure you want to submit? You have answered ${answeredCount} out of ${total} questions.`;
+        if (answeredCount < total) {
+            message += `\n\nWarning: You have ${total - answeredCount} unanswered question(s).`;
+        }
+
+        if (confirm(message)) {
+            calculateAndShowResult();
+        }
+    }
+
+    function calculateAndShowResult() {
+        let score = 0;
+        preparedQuestions.forEach((q, idx) => {
+            if (userAnswers[idx] === q.answer) {
+                score++;
+            }
+        });
+
+        const total = preparedQuestions.length;
+        const percentage = Math.round((score / total) * 100);
+
+        document.getElementById('questionBox').style.display = 'none';
+        document.getElementById('progressSection').style.display = 'none';
+        document.getElementById('footerNav').style.display = 'none';
+
+        document.getElementById('scoreDisplay').innerText = `${score} / ${total}`;
+        document.getElementById('percentageDisplay').innerText = `Overall Score: ${percentage}%`;
+        document.getElementById('resultScreen').style.display = 'block';
+    }
+
+    function restartQuiz() {
+        initQuiz();
+    }
+
+    window.onload = initQuiz;
+</script>
+</body>
+</html>
